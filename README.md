@@ -21,7 +21,16 @@ git submodule update --remote
 
 And then commit + push.
 
-## Implementations Included
+## Disabling/Enabling Backends
+
+- Fork this repository and the `cimgui` submodule.  
+- Make changes in your `cimgui` submodule.  
+  - i.e. Edit `generator.bat` & `generator.sh`.  
+  - Run the generator and commit output files.
+
+- Modify the included `build-native.cmd` and `build-native.sh` scripts to disable individual CMAKE flags.  
+
+## Backends Included
 
 Includes the following backends and imgui internal API, where available:  
 
