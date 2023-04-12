@@ -38,15 +38,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	brew install glfw
 fi
 
-mkdir -p $cimguiPath/build/$_CMakeBuildType
-pushd $cimguiPath/build/$_CMakeBuildType
+mkdir -p $cimguiPath/build/$_CMakeBuildArch/$_CMakeBuildType
+pushd $cimguiPath/build/$_CMakeBuildArch/$_CMakeBuildType
 implementations="-DIMPL_OGL3=ON -DIMPL_VULKAN=ON"
 
 # If we aren't on OSX, we can build a few more things.
 if [ -z "$_CMakeOsxArchitectures" ]; then
-	implementations="$implementations -DIMPL_OGL2=ON -DIMPL_GLFW=ON -DIMPL_SDL=ON"
+	implementations="$implementations -DIMPL_OGL2=ON -DIMPL_GLFW=ON -DIMPL_SDL2=ON"
 fi
 
 cmake $implementations -DCMAKE_OSX_ARCHITECTURES="$_CMakeOsxArchitectures" -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 -DCMAKE_BUILD_TYPE=$_CMakeBuildType ../..
-make
+cmake --build .
 popd
